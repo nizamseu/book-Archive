@@ -63,7 +63,9 @@ displayBook = (data) => {
       item?.publisher[0] ? (publisher = item?.publisher[0]) : (publisher = "not available");
       // conditionaly publish date
       item?.publish_date[0] ? (publishDate = item?.publish_date[0]) : (publishDate = "not available");
-
+      // conditionally title
+      item?.publish_date[0] ? (publishDate = item?.publish_date[0]) : (publishDate = "not available");
+      item?.title ? (title = item?.title) : (title = "not available");
       console.log(item?.title);
 
       div.innerHTML = `
@@ -71,7 +73,7 @@ displayBook = (data) => {
            <div class="card">
                 <img height='450px'  src=${imgUrl}  class="card-img-top" alt="...">
                <div class="card-body">
-                   <h5 id="author" class="card-title">${item?.title}</h5>
+                   <h5 id="author" class="card-title">${title}</h5>
                    <h6 class="card-text">Author:  <span class ="text-secondary"> ${auth} </span></h6>
                    <h6 class="card-text">Publisher: <span class ="text-secondary"> ${publisher} </span> </h6>
                    <h6 class="card-text">Published: <span class ="text-secondary">  ${publishDate} </span> </h6>
