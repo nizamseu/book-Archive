@@ -5,6 +5,7 @@ search =()=>{
         const bookCard = document.getElementById('bookCard');
         const totalFound = document.getElementById('found');
         const emptyInput =document.getElementById('emptyInput');
+        const error =document.getElementById('error');
 
         const inputValue =inputField.value;
         bookCard.textContent ='';
@@ -12,6 +13,7 @@ search =()=>{
 if(inputValue === ''){
     sppiner('hidden')
     emptyInput.style.display='block';
+    error.style.display='none';
     totalFound.innerText ='';
     bookCard.textContent ='';
 }else {
@@ -44,6 +46,7 @@ console.log("daattta",data);
 // console.log(meal.length);
 const error =document.getElementById('error');
 if (data.numFound == 0){
+    totalFound.innerText= '';
     error.style.display='block';
     sppiner('hidden')
 }else {
