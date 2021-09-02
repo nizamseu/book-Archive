@@ -56,13 +56,13 @@ if (data.numFound == 0){
     
     data?.docs.forEach(item =>{
        const div =document.createElement('div');
-       
+       console.log(item);
     //    conditionaly image show 
       item?.cover_i
       ? imgUrl = `https://covers.openlibrary.org/b/id/${item?.cover_i}-M.jpg`
       :imgUrl = "images/error.png"
       
-
+console.log(item.author_name.en);
 
        div.innerHTML = `
        <div class="col">
@@ -75,7 +75,10 @@ if (data.numFound == 0){
               
                <div class="card-body">
                    <h5 id="author" class="card-title">${item?.title}</h5>
-                   <p class="card-text">${item?.author_name[0]}</p>
+                   <h6 class="card-text">Author:  <span class ="text-secondary"> ${item?.author_name.join()} </span></h6>
+                   <h6 class="card-text">Publisher: <span class ="text-secondary"> ${item?.publisher[0]} </span> </h6>
+                   <h6 class="card-text">Published: <span class ="text-secondary">  ${item?.publish_date[0]} </span> </h6>
+
                </div>
            </div>
        </div>
