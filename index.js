@@ -7,7 +7,8 @@ search =()=>{
         const emptyInput =document.getElementById('emptyInput');
 
         const inputValue =inputField.value;
-
+        bookCard.textContent ='';
+        totalFound.innerText ='';
 if(inputValue === ''){
     sppiner('hidden')
     emptyInput.style.display='block';
@@ -34,31 +35,46 @@ displayWeather =(data)=>{
     const totalFound = document.getElementById('found');
     totalFound.innerText =`Result Found :${data.numFound}`;
     
+console.log("daattta",data);
 
+// const cardItem =document.getElementById('cardItem');
+//     cardItem.textContent ='';
+
+
+// console.log(meal.length);
+const error =document.getElementById('error');
+if (data.numFound == 0){
+    error.style.display='block';
+    sppiner('hidden')
+}else {
+    error.style.display='none'
     const bookCard = document.getElementById('bookCard');
-     data?.docs.forEach(item =>{
-        console.log(item);
+    data?.docs.forEach(item =>{
+       console.log(item);
+      
        
-        
-        // https://openlibrary.org/books/OL7353617M.json
+       // https://openlibrary.org/books/OL7353617M.json
 
-        const div =document.createElement('div');
-        
-        div.innerHTML = `
-        <div class="col">
-            <div class="card">
-            
-                <img height='450px' src="https://covers.openlibrary.org/b/id/${item?.cover_i}-M.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 id="author" class="card-title">${item?.title}</h5>
-                    <p class="card-text">${item?.author_name[0]}</p>
-                </div>
-            </div>
-        </div>
-        `;
-       bookCard.appendChild(div) 
-     })
-     sppiner('hidden')
+       const div =document.createElement('div');
+       
+       div.innerHTML = `
+       <div class="col">
+           <div class="card">
+           
+               <img height='450px' src="https://covers.openlibrary.org/b/id/${item?.cover_i}-M.jpg" class="card-img-top" alt="...">
+               <div class="card-body">
+                   <h5 id="author" class="card-title">${item?.title}</h5>
+                   <p class="card-text">${item?.author_name[0]}</p>
+               </div>
+           </div>
+       </div>
+       `;
+      bookCard.appendChild(div) ;
+      sppiner('hidden')
+    })
+}
+    
+    
 }
 
 
@@ -66,6 +82,5 @@ displayWeather =(data)=>{
 // sppiner function 
 sppiner = (property)=>{
     const sppiner = document.getElementById('sppiner');
-    console.log(sppiner);
     sppiner.style.visibility= property
     }
