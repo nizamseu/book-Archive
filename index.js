@@ -52,19 +52,27 @@ if (data.numFound == 0){
 }else {
     error.style.display='none'
     const bookCard = document.getElementById('bookCard');
+    
+    
     data?.docs.forEach(item =>{
-       console.log(item);
-      
-       
-       // https://openlibrary.org/books/OL7353617M.json
-
        const div =document.createElement('div');
        
+    //    conditionaly image show 
+      item?.cover_i
+      ? imgUrl = `https://covers.openlibrary.org/b/id/${item?.cover_i}-M.jpg`
+      :imgUrl = "images/error.png"
+      
+
+
        div.innerHTML = `
        <div class="col">
            <div class="card">
+            
+                <img height='450px'  src=${imgUrl}  class="card-img-top" alt="...">
+            
+             
            
-               <img height='450px' src="https://covers.openlibrary.org/b/id/${item?.cover_i}-M.jpg" class="card-img-top" alt="...">
+              
                <div class="card-body">
                    <h5 id="author" class="card-title">${item?.title}</h5>
                    <p class="card-text">${item?.author_name[0]}</p>
