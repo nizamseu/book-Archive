@@ -8,6 +8,7 @@ search = () => {
   const inputValue = inputField.value;
   bookCard.textContent = "";
   totalFound.innerText = "";
+  error.style.display = "none";
   if (inputValue === "") {
     sppiner("hidden");
     emptyInput.style.display = "block";
