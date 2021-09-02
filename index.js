@@ -25,7 +25,7 @@ if(inputValue === ''){
         fetch(url)
         .then(res=>res.json())
         .then(data=> {
-            displayWeather(data)
+            displayBook(data)
 
         })
 }
@@ -33,9 +33,9 @@ inputField.value= '';
 }
 
 
-displayWeather =(data)=>{
+displayBook =(data)=>{
     const totalFound = document.getElementById('found');
-    totalFound.innerText =`Result Found :${data.numFound}`;
+    totalFound.innerText =`প্রায় ${data.numFound} টি ফলাফল পাওয়া গেছে. `;
     
 console.log("daattta",data);
 
@@ -45,7 +45,7 @@ console.log("daattta",data);
 
 // console.log(meal.length);
 const error =document.getElementById('error');
-if (data.numFound == 0){
+if (data.numFound === 0){
     totalFound.innerText= '';
     error.style.display='block';
     sppiner('hidden')
@@ -62,7 +62,15 @@ if (data.numFound == 0){
       ? imgUrl = `https://covers.openlibrary.org/b/id/${item?.cover_i}-M.jpg`
       :imgUrl = "images/error.png"
       
-console.log(item.author_name.en);
+// conditionaly author
+    item?.author_name? auth= item?.author_name.join() :auth ='not available'
+// conditionaly publisher 
+item?.publisher[0]? publisher = item?.publisher[0] :publisher ='not available' 
+// conditionaly publish date 
+item?.publish_date[0]? publishDate =item?.publish_date[0] : publishDate ='not available'
+
+
+console.log(item?.title);
 
        div.innerHTML = `
        <div class="col">
@@ -75,9 +83,9 @@ console.log(item.author_name.en);
               
                <div class="card-body">
                    <h5 id="author" class="card-title">${item?.title}</h5>
-                   <h6 class="card-text">Author:  <span class ="text-secondary"> ${item?.author_name.join()} </span></h6>
-                   <h6 class="card-text">Publisher: <span class ="text-secondary"> ${item?.publisher[0]} </span> </h6>
-                   <h6 class="card-text">Published: <span class ="text-secondary">  ${item?.publish_date[0]} </span> </h6>
+                   <h6 class="card-text">Author:  <span class ="text-secondary"> ${auth} </span></h6>
+                   <h6 class="card-text">Publisher: <span class ="text-secondary"> ${publisher} </span> </h6>
+                   <h6 class="card-text">Published: <span class ="text-secondary">  ${publishDate} </span> </h6>
 
                </div>
            </div>
